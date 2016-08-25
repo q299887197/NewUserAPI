@@ -93,5 +93,8 @@ if ($apiName[0] == "transfer") {
 if ($apiName[0] == "checkTransfer") {
 	$result = $api->checkTransfer($transid);
 
-	echo "帳號".$username."目前餘額有".$result."元";
+	foreach($result as $row);
+
+	echo "此筆交易, 動作: ".$row['type'].", 交易金額: ".$row['amount'];
+	// echo "此筆交易: ".json_encode($result);
 }
