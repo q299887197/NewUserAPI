@@ -118,9 +118,10 @@ class Api
     }
 
 	/* 查詢轉帳 */
-	public function checkTransfer($transid)
+	public function checkTransfer($username, $transid)
 	{
 		$db = $this->dbh;
+
         $select = $db->prepare("SELECT * FROM `userRecord` WHERE `transid` = :transid");
         $select->bindParam(':transid', $transid);
         $select->execute();

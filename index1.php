@@ -123,7 +123,7 @@ if ($apiName[0] == "checkTransfer") {
 		echo "key值輸入錯誤!";
 		exit;
 	}
-	$result = $api->checkTransfer($transid);
+	$result = $api->checkTransfer($username, $transid);
 
 	foreach($result as $row);
 
