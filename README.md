@@ -24,9 +24,8 @@
 ##轉帳確認API = checkTransfer
 #參數
 1.帳號(string) username
-2.金額(int) amount
-3.序號(int) transid
-4.驗證碼(string) key
+2.序號(int) transid
+3.驗證碼(string) key
 
 
 

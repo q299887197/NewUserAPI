@@ -1,5 +1,6 @@
 <?php
 header("content-type: text/html; charset=utf-8");
+date_default_timezone_set('Asia/Taipei'); //設定地點為台北時區
 
 require_once("Api.php");
 
@@ -13,10 +14,24 @@ $username = $_GET['username'];
 $amount = $_GET['amount'];
 $transid = $_GET['transid'];
 $type = $_GET['type'];
+$key = $_GET['key'];
 
+$date= date("Ymd");
 
 /* 新增帳號API */
 if ($apiName[0] == "addUser") {
+	if (!$username) {
+		echo "參數錯誤";
+		exit;
+	}
+	if (!$key) {
+		echo "參數錯誤";
+		exit;
+	}
+	if ($key != $date) {
+		echo "key值輸入錯誤!";
+		exit;
+	}
 	$result = $api->addUser($username);
 
 	if (!$result) {
@@ -30,6 +45,19 @@ if ($apiName[0] == "addUser") {
 
 /* 取得餘額API */
 if ($apiName[0] == "getBalance") {
+	if (!$username) {
+		echo "參數錯誤";
+		exit;
+	}
+	if (!$key) {
+		echo "參數錯誤";
+		exit;
+	}
+	if ($key != $date) {
+		echo "key值輸入錯誤!";
+		exit;
+	}
+
 	$result = $api->getBalance($username);
 
 	echo "帳號".$username."目前餘額有".$result."元";
@@ -37,9 +65,32 @@ if ($apiName[0] == "getBalance") {
 
 /* 轉帳API */
 if ($apiName[0] == "transfer") {
+	if (!$username) {
+		echo "參數錯誤";
+		exit;
+	}
+	if (!$type) {
+		echo "參數錯誤";
+		exit;
+	}
+	if (!$amount) {
+		echo "參數錯誤";
+		exit;
+	}
+	if (!$transid) {
+		echo "參數錯誤";
+		exit;
+	}
+	if (!$key) {
+		echo "參數錯誤";
+		exit;
+	}
+	if ($key != $date) {
+		echo "key值輸入錯誤!";
+		exit;
+	}
 	$result = $api->transfer($username, $type, $amount, $transid);
-	// var_dump($result);
-	// echo "<br>";
+
 	$balance = $result['balance'];
 	$resultTure = $result['result'];
 	$msg = $result['msg'];
@@ -60,6 +111,18 @@ if ($apiName[0] == "transfer") {
 
 /* 確認轉帳API */
 if ($apiName[0] == "checkTransfer") {
+	if (!$transid) {
+		echo "參數錯誤";
+		exit;
+	}
+	if (!$key) {
+		echo "參數錯誤";
+		exit;
+	}
+	if ($key != $date) {
+		echo "key值輸入錯誤!";
+		exit;
+	}
 	$result = $api->checkTransfer($transid);
 
 	foreach($result as $row);
