@@ -8,8 +8,6 @@ $api = new Api();
 $url = $_SERVER['REQUEST_URI'];
 $url = explode ( ".php/", $url );
 $apiName = explode ( "?", $url[1] );
-echo $apiName[0] . "<br>";
-
 
 $username = $_GET['username'];
 $amount = $_GET['amount'];
