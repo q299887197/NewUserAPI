@@ -14,35 +14,6 @@ $amount = $_GET['amount'];
 $transid = $_GET['transid'];
 $type = $_GET['type'];
 
-	/*	建立帳號API = addUser
-	/	參數
-	/		帳號(string) username
-	/		驗證碼(string) key
-	*/
-
-	/*	取得餘額API = getBalance
-	/	參數
-	/		帳號(string) username
-	/		驗證碼(string) key
-	*/
-
-	/*	轉帳API = transfer
-	/	參數
-	/		帳號(string) username
-	/		轉帳型態(string) type (IN,OUT)
-	/		金額(int) amount
-	/		序號(int) transid
-	/		驗證碼(string) key
-	*/
-
-	/*	轉帳確認API = checkTransfer
-	/	參數
-	/		帳號(string) username
-	/		金額(int) amount
-	/		序號(int) transid
-	/		驗證碼(string) key
-	*/
-
 
 /* 新增帳號API */
 if ($apiName[0] == "addUser") {

@@ -1,40 +1,6 @@
 <?php
 require_once("PdoConfig.php");
 
-
-	/*	建立帳號API = addUser
-	/	參數
-	/		帳號(string) username
-	/		密碼(string) password
-	/		驗證碼(string) key
-	*/
-
-	/*	取得餘額API = getBalance
-	/	參數
-	/		帳號(string) username
-	/		密碼(string) password
-	/		驗證碼(string) key
-	*/
-
-	/*	轉帳API = transfer
-	/	參數
-	/		帳號(string) username
-	/		密碼(string) password
-	/		轉帳型態(string) type (IN,OUT)
-	/		金額(int) amount
-	/		序號(int) transid
-	/		驗證碼(string) key
-	*/
-
-	/*	轉帳確認API = checkTransfer
-	/	參數
-	/		帳號(string) username
-	/		密碼(string) password
-	/		金額(int) amount
-	/		序號(int) transid
-	/		驗證碼(string) key
-	*/
-
 class Api
 {
 	public $dbh;
@@ -161,12 +127,4 @@ class Api
 
         return $select->fetchAll();
 	}
-
-
-
-
-
 }
-
-
-
