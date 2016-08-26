@@ -186,6 +186,19 @@ if ($apiName[0] == "transfer") {
 		echo json_encode($dataArray);
 		exit;
 	}
+	if (!preg_match("/^([0-9]+)$/",$amount)) {
+		// 金額亂打包含負數
+		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "Amount Input Error"));
+		echo json_encode($dataArray);
+		exit;
+	}
+	if (!preg_match("/^([0-9]+)$/",$transid)) {
+		// 編號亂打
+		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "Transid Input Error"));
+		echo json_encode($dataArray);
+		exit;
+	}
+
 	$result = $api->transfer($username, $type, $amount, $transid);
 
 	$balance = $result['balance'];
@@ -242,6 +255,12 @@ if ($apiName[0] == "checkTransfer") {
 	if (!preg_match("/^([a-zA-Z0-9]+)$/",$username)) {
 		// 帳號亂打
 		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "UserName Input Error"));
+		echo json_encode($dataArray);
+		exit;
+	}
+	if (!preg_match("/^([0-9]+)$/",$transid)) {
+		// 編號亂打
+		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "Transid Input Error"));
 		echo json_encode($dataArray);
 		exit;
 	}
