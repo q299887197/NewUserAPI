@@ -47,7 +47,7 @@ class Api
 	{
 		$db = $this->dbh;
 
-		$resultUserName = selectUser($username);
+		$resultUserName = $this->selectUser($username);
 
 		if ($resultUserName != $username) {
         	return false;
@@ -67,7 +67,7 @@ class Api
 	{
 		$dbh = $this->dbh;
 
-		$resultUserName = selectUser($username);
+		$resultUserName = $this->selectUser($username);
 
 		if ($resultUserName != $username) {
         	return "Error";
@@ -160,7 +160,7 @@ class Api
 	{
 		$db = $this->dbh;
 
-		$resultUserName = selectUser($username);
+		$resultUserName = $this->selectUser($username);
 
 		if ($resultUserName != $username) {
         	return "Error";
