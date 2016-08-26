@@ -87,39 +87,55 @@ if ($apiName[0] == "getBalance") {
 /* 轉帳API */
 if ($apiName[0] == "transfer") {
 	if (!$username) {
-		echo "參數錯誤";
+		// 參數錯誤
+		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "No UserName"));
+		echo json_encode($dataArray);
 		exit;
 	}
 	if (!$type) {
-		echo "參數錯誤";
+		// 參數錯誤
+		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "No Type"));
+		echo json_encode($dataArray);
 		exit;
 	}
 	if (!$amount) {
-		echo "參數錯誤";
+		// 參數錯誤
+		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "No Amount"));
+		echo json_encode($dataArray);
 		exit;
 	}
 	if (!$transid) {
-		echo "參數錯誤";
+		// 參數錯誤
+		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "No Transid"));
+		echo json_encode($dataArray);
 		exit;
 	}
 	if (!$key) {
-		echo "參數錯誤";
+		// 參數錯誤
+		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "No Key"));
+		echo json_encode($dataArray);
 		exit;
 	}
 	if ($type != "IN" ) {
 		if ($type != "OUT") {
-			echo "type值輸入有誤";
+			// type值輸入有誤
+			$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "Type Input Error"));
+			echo json_encode($dataArray);
 			exit;
 		}
 	}
 	if ($type != "OUT" ) {
 		if ($type != "IN") {
-			echo "type值輸入有誤";
+			// type值輸入有誤
+			$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "Type Input Error"));
+			echo json_encode($dataArray);
 			exit;
 		}
 	}
 	if ($key != $date) {
-		echo "key值輸入錯誤!";
+		// key值輸入錯誤
+		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "Key Input Error"));
+		echo json_encode($dataArray);
 		exit;
 	}
 	$result = $api->transfer($username, $type, $amount, $transid);
@@ -129,15 +145,22 @@ if ($apiName[0] == "transfer") {
 	$msg = $result['msg'];
 
 	if (!$result) {
-		echo "轉帳失敗";
+		// 轉帳失敗
+		$dataArray = array("result" => false, "data" => array("Code" => $username, "Message" => "Transfer Fail"));
+		echo json_encode($dataArray);
+		exit;
 	}
-
-	if ($resultTure) {
-		echo "轉帳成功".$username."目前餘額有".$balance."元";
-	}
-
 	if ($msg) {
-		echo $msg;
+		// 轉帳失敗
+		$dataArray = array("result" => false, "data" => array("Code" => $username, "Message" => $msg));
+		echo json_encode($dataArray);
+		exit;
+	}
+	if ($resultTure) {
+		// 轉帳成功
+		$dataArray = array("result" => true, "data" => array("Code" => $username, "Balance" => $balance, "Message" => "Transfer Success"));
+		echo json_encode($dataArray);
+		exit;
 	}
 
 }

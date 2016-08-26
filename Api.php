@@ -64,7 +64,7 @@ class Api
 		    /* 取款 */
 		    if ($type == "OUT") {
 		        if ($balance < $amount) {
-		            throw new Exception("餘額不足夠");
+		            throw new Exception("Insufficient balance"); //餘額不足
 		        }
 
 		        $update = $dbh->prepare("UPDATE `userData` SET `balance` = `balance` - :amount
@@ -76,7 +76,7 @@ class Api
 		    $updateResult = $update->execute();
 
 			if (!$updateResult) {
-				throw new Exception("轉帳失敗");
+				throw new Exception("Transfer Fail"); //轉帳失敗
 			}
 
 			//查詢最新餘額
@@ -87,7 +87,7 @@ class Api
 			$transidFalse = $this->insertRecord($username, $type, $amount, $transid);
 
 			if ($transidFalse) {
-				throw new Exception("序號重複,交易失敗");
+				throw new Exception("Repeat Transfer, Transfer Fail"); //重複序號, 交易失敗
 			}
 
 			$data['result'] = true;
