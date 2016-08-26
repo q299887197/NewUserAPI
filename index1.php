@@ -186,7 +186,11 @@ if ($apiName[0] == "transfer") {
 	$balance = $result['balance'];
 	$resultTure = $result['result'];
 	$msg = $result['msg'];
-
+	if ($result == "Repeat") { // 帳號錯誤
+		$dataArray = array("result" => false, "data" => array("Code" => "UserName Error", "Message" => "UserName Input Error"));
+		echo json_encode($dataArray);
+		exit;
+	}
 	if (!$result) { // 轉帳失敗
 		$dataArray = array("result" => false, "data" => array("Code" => $username, "Message" => "Transfer Fail"));
 		echo json_encode($dataArray);

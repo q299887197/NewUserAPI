@@ -66,6 +66,13 @@ class Api
 	public function transfer($username, $type, $amount, $transid)
 	{
 		$dbh = $this->dbh;
+
+		$resultUserName = selectUser($username);
+
+		if ($resultUserName != $username) {
+        	return "Repeat";
+        }
+
 		try{
             $dbh->beginTransaction();
 
