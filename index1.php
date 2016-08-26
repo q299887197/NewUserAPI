@@ -22,8 +22,7 @@ $key = $_GET['key'];
 $date= date("Ymd");
 
 if ($apiName[0]) {
-	if (!preg_match("/^([a-zA-Z0-9]+)$/",$apiName[0])) {
-		// 參數錯誤
+	if (!preg_match("/^([a-zA-Z0-9]+)$/",$apiName[0])) { // 參數錯誤
 		$dataArray = array("result" => false, "data" => array("Code" => "API Error", "Message" => "API Input Error"));
 		echo json_encode($dataArray);
 		exit;
@@ -32,32 +31,27 @@ if ($apiName[0]) {
 
 /* 新增帳號API */
 if ($apiName[0] == "addUser") {
-	if (!$apiName[1]) {
-		// 參數空的
+	if (!$apiName[1]) { // 參數空的
 		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "No Parameter"));
 		echo json_encode($dataArray);
 		exit;
 	}
-	if (!$username) {
-		// 參數錯誤
+	if (!$username) { // 參數空的
 		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "No UserName"));
 		echo json_encode($dataArray);
 		exit;
 	}
-	if (!$key) {
-		// 參數錯誤
+	if (!$key) { // 參數錯誤
 		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "No Key"));
 		echo json_encode($dataArray);
 		exit;
 	}
-	if ($key != $date) {
-		// key值輸入錯誤
+	if ($key != $date)  {// key值輸入錯誤
 		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "Key Input Error"));
 		echo json_encode($dataArray);
 		exit;
 	}
-	if (!preg_match("/^([a-zA-Z0-9]+)$/",$username)) {
-		// 帳號亂打
+	if (!preg_match("/^([a-zA-Z0-9]+)$/",$username)) { // 帳號亂打
 		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "UserName Input Error"));
 		echo json_encode($dataArray);
 		exit;
@@ -66,8 +60,7 @@ if ($apiName[0] == "addUser") {
 
 	$result = $api->addUser($username);
 
-	if (!$result) {
-		// 註冊失敗
+	if (!$result) { // 註冊失敗
 		$dataArray = array("result" => false, "data" => array("Code" => $username, "Message" => "CreateUser Fail"));
 		echo json_encode($dataArray);
 		exit;
@@ -81,32 +74,27 @@ if ($apiName[0] == "addUser") {
 
 /* 取得餘額API */
 if ($apiName[0] == "getBalance") {
-	if (!$apiName[1]) {
-		// 參數空的
+	if (!$apiName[1]) { // 參數空的
 		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "No Parameter"));
 		echo json_encode($dataArray);
 		exit;
 	}
-	if (!$username) {
-		// 參數錯誤
+	if (!$username) { // 參數錯誤
 		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "No UserName"));
 		echo json_encode($dataArray);
 		exit;
 	}
-	if (!$key) {
-		// 參數錯誤
+	if (!$key) { // 參數錯誤
 		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "No Key"));
 		echo json_encode($dataArray);
 		exit;
 	}
-	if ($key != $date) {
-		// key值輸入錯誤
+	if ($key != $date) { // key值輸入錯誤
 		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "Key Input Error"));
 		echo json_encode($dataArray);
 		exit;
 	}
-	if (!preg_match("/^([a-zA-Z0-9]+)$/",$username)) {
-		// 帳號亂打
+	if (!preg_match("/^([a-zA-Z0-9]+)$/",$username)) { // 帳號亂打
 		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "UserName Input Error"));
 		echo json_encode($dataArray);
 		exit;
@@ -122,78 +110,66 @@ if ($apiName[0] == "getBalance") {
 
 /* 轉帳API */
 if ($apiName[0] == "transfer") {
-	if (!$apiName[1]) {
-		// 參數空的
+	if (!$apiName[1]) { // 參數空的
 		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "No Parameter"));
 		echo json_encode($dataArray);
 		exit;
 	}
-	if (!$username) {
-		// 參數錯誤
+	if (!$username) { // 參數錯誤
 		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "No UserName"));
 		echo json_encode($dataArray);
 		exit;
 	}
-	if (!$type) {
-		// 參數錯誤
+	if (!$type) { // 參數錯誤
 		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "No Type"));
 		echo json_encode($dataArray);
 		exit;
 	}
-	if (!$amount) {
-		// 參數錯誤
+	if (!$amount) { // 參數錯誤
 		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "No Amount"));
 		echo json_encode($dataArray);
 		exit;
 	}
-	if (!$transid) {
-		// 參數錯誤
+	if (!$transid) { // 參數錯誤
 		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "No Transid"));
 		echo json_encode($dataArray);
 		exit;
 	}
-	if (!$key) {
-		// 參數錯誤
+	if (!$key) { // 參數錯誤
 		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "No Key"));
 		echo json_encode($dataArray);
 		exit;
 	}
 	if ($type != "IN" ) {
-		if ($type != "OUT") {
-			// type值輸入有誤
+		if ($type != "OUT") { // type值輸入有誤
 			$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "Type Input Error"));
 			echo json_encode($dataArray);
 			exit;
 		}
 	}
 	if ($type != "OUT" ) {
-		if ($type != "IN") {
-			// type值輸入有誤
+		if ($type != "IN") { // type值輸入有誤
 			$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "Type Input Error"));
 			echo json_encode($dataArray);
 			exit;
 		}
 	}
-	if ($key != $date) {
-		// key值輸入錯誤
+	if ($key != $date) { // key值輸入錯誤
 		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "Key Input Error"));
 		echo json_encode($dataArray);
 		exit;
 	}
-	if (!preg_match("/^([a-zA-Z0-9]+)$/",$username)) {
-		// 帳號亂打
+	if (!preg_match("/^([a-zA-Z0-9]+)$/",$username)) { // 帳號亂打
 		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "UserName Input Error"));
 		echo json_encode($dataArray);
 		exit;
 	}
-	if (!preg_match("/^([0-9]+)$/",$amount)) {
-		// 金額亂打包含負數
+	if (!preg_match("/^([0-9]+)$/",$amount)) { // 金額亂打包含負數
 		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "Amount Input Error"));
 		echo json_encode($dataArray);
 		exit;
 	}
-	if (!preg_match("/^([0-9]+)$/",$transid)) {
-		// 編號亂打
+	if (!preg_match("/^([0-9]+)$/",$transid)) { // 編號亂打
 		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "Transid Input Error"));
 		echo json_encode($dataArray);
 		exit;
@@ -205,20 +181,17 @@ if ($apiName[0] == "transfer") {
 	$resultTure = $result['result'];
 	$msg = $result['msg'];
 
-	if (!$result) {
-		// 轉帳失敗
+	if (!$result) { // 轉帳失敗
 		$dataArray = array("result" => false, "data" => array("Code" => $username, "Message" => "Transfer Fail"));
 		echo json_encode($dataArray);
 		exit;
 	}
-	if ($msg) {
-		// 轉帳失敗
+	if ($msg) { // 轉帳失敗
 		$dataArray = array("result" => false, "data" => array("Code" => $username, "Message" => $msg));
 		echo json_encode($dataArray);
 		exit;
 	}
-	if ($resultTure) {
-		// 轉帳成功
+	if ($resultTure) { // 轉帳成功
 		$dataArray = array("result" => true, "data" => array("Code" => $username, "Balance" => $balance, "Message" => "Transfer Success"));
 		echo json_encode($dataArray);
 		exit;
@@ -228,38 +201,32 @@ if ($apiName[0] == "transfer") {
 
 /* 確認轉帳API */
 if ($apiName[0] == "checkTransfer") {
-	if (!$apiName[1]) {
-		// 參數空的
+	if (!$apiName[1]) { // 參數空的
 		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "No Parameter"));
 		echo json_encode($dataArray);
 		exit;
 	}
-	if (!$transid) {
-		// 參數錯誤
+	if (!$transid) { // 參數錯誤
 		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "No Transid"));
 		echo json_encode($dataArray);
 		exit;
 	}
-	if (!$key) {
-		// 參數錯誤
+	if (!$key) { // 參數錯誤
 		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "No Key"));
 		echo json_encode($dataArray);
 		exit;
 	}
-	if ($key != $date) {
-		// key值輸入錯誤
+	if ($key != $date) { // key值輸入錯誤
 		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "Key Input Error"));
 		echo json_encode($dataArray);
 		exit;
 	}
-	if (!preg_match("/^([a-zA-Z0-9]+)$/",$username)) {
-		// 帳號亂打
+	if (!preg_match("/^([a-zA-Z0-9]+)$/",$username)) { // 帳號亂打
 		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "UserName Input Error"));
 		echo json_encode($dataArray);
 		exit;
 	}
-	if (!preg_match("/^([0-9]+)$/",$transid)) {
-		// 編號亂打
+	if (!preg_match("/^([0-9]+)$/",$transid)) { // 編號亂打
 		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "Transid Input Error"));
 		echo json_encode($dataArray);
 		exit;
@@ -267,8 +234,8 @@ if ($apiName[0] == "checkTransfer") {
 
 	$result = $api->checkTransfer($username, $transid);
 
-	if (!$result) {
-		// 紀錄
+	if (!$result) { // 沒紀錄
+
 		$dataArray = array("result" => true, "data" => array("Code" => "Transid Error", "Message" => "Transid Number Is Null"));
 		echo json_encode($dataArray);
 		exit;
