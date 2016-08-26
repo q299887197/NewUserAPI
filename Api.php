@@ -12,8 +12,8 @@ class Api
         $this->dbh = $db;
     }
 
-	/* 新增帳號 */
-	public function addUser($username)
+    /* 查詢帳號 */
+	public function selectUser($username)
 	{
 		$db = $this->dbh;
 		$select = $db->prepare("SELECT `username` FROM `userData` WHERE `username` = :username");
@@ -21,6 +21,16 @@ class Api
 		$select->execute();
 		$result = $select->fetch();
         $resultUserName = $result['username'];
+
+        return $resultUserName;
+	}
+
+	/* 新增帳號 */
+	public function addUser($username)
+	{
+		$db = $this->dbh;
+
+		$resultUserName = selectUser($username);
 
         if ($resultUserName == $username) {
         	return false;
