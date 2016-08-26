@@ -58,6 +58,9 @@ class Api
         $select->execute();
         $data = $select->fetch();
         $balance = $data['balance'];
+        if ($balance == "0") {
+        	return "zero";
+        }
 
         return $balance;
 	}
