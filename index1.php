@@ -58,21 +58,30 @@ if ($apiName[0] == "addUser") {
 /* 取得餘額API */
 if ($apiName[0] == "getBalance") {
 	if (!$username) {
-		echo "參數錯誤";
+		// 參數錯誤
+		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "No UserName"));
+		echo json_encode($dataArray);
 		exit;
 	}
 	if (!$key) {
-		echo "參數錯誤";
+		// 參數錯誤
+		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "No Key"));
+		echo json_encode($dataArray);
 		exit;
 	}
 	if ($key != $date) {
-		echo "key值輸入錯誤!";
+		// key值輸入錯誤
+		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "Key Input Error"));
+		echo json_encode($dataArray);
 		exit;
 	}
 
 	$result = $api->getBalance($username);
 
-	echo "帳號".$username."目前餘額有".$result."元";
+	// 餘額
+	$dataArray = array("result" => true, "data" => array("Code" => $username, "Message" => "Balance:".$result));
+	echo json_encode($dataArray);
+	exit;
 }
 
 /* 轉帳API */
