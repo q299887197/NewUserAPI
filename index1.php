@@ -11,6 +11,7 @@ $url = $_SERVER['REQUEST_URI'];
 $url = explode ( ".php/", $url );
 $apiName = explode ( "?", $url[1] );
 
+$dataArray = array();
 $username = $_GET['username'];
 $amount = $_GET['amount'];
 $transid = $_GET['transid'];
@@ -22,25 +23,35 @@ $date= date("Ymd");
 /* 新增帳號API */
 if ($apiName[0] == "addUser") {
 	if (!$username) {
-		echo "參數錯誤";
+		// 參數錯誤
+		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "No UserName"));
+		echo json_encode($dataArray);
 		exit;
 	}
 	if (!$key) {
-		echo "參數錯誤";
+		// 參數錯誤
+		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "No Key"));
+		echo json_encode($dataArray);
 		exit;
 	}
 	if ($key != $date) {
-		echo "key值輸入錯誤!";
+		// key值輸入錯誤
+		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "Key Input Error"));
+		echo json_encode($dataArray);
 		exit;
 	}
 	$result = $api->addUser($username);
 
 	if (!$result) {
-		echo "註冊失敗!";
+		// 註冊失敗
+		$dataArray = array("result" => false, "data" => array("Code" => $username, "Message" => "CreateUser Fail"));
+		echo json_encode($dataArray);
 		exit;
 	}
 
-	echo "註冊成功! 帳號為: ".$username."。";
+	// 註冊成功
+	$dataArray = array("result" => true, "data" => array("Code" => $username, "Message" => "NewUser Success"));
+	echo json_encode($dataArray);
 	exit;
 }
 
