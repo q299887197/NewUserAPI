@@ -56,6 +56,13 @@ if ($apiName[0] == "addUser") {
 		echo json_encode($dataArray);
 		exit;
 	}
+	if (!preg_match("/^([a-zA-Z0-9]+)$/",$username)) {
+		// 帳號亂打
+		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "UserName Input Error"));
+		echo json_encode($dataArray);
+		exit;
+	}
+
 
 	$result = $api->addUser($username);
 
@@ -95,6 +102,12 @@ if ($apiName[0] == "getBalance") {
 	if ($key != $date) {
 		// key值輸入錯誤
 		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "Key Input Error"));
+		echo json_encode($dataArray);
+		exit;
+	}
+	if (!preg_match("/^([a-zA-Z0-9]+)$/",$username)) {
+		// 帳號亂打
+		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "UserName Input Error"));
 		echo json_encode($dataArray);
 		exit;
 	}
@@ -167,6 +180,12 @@ if ($apiName[0] == "transfer") {
 		echo json_encode($dataArray);
 		exit;
 	}
+	if (!preg_match("/^([a-zA-Z0-9]+)$/",$username)) {
+		// 帳號亂打
+		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "UserName Input Error"));
+		echo json_encode($dataArray);
+		exit;
+	}
 	$result = $api->transfer($username, $type, $amount, $transid);
 
 	$balance = $result['balance'];
@@ -217,6 +236,12 @@ if ($apiName[0] == "checkTransfer") {
 	if ($key != $date) {
 		// key值輸入錯誤
 		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "Key Input Error"));
+		echo json_encode($dataArray);
+		exit;
+	}
+	if (!preg_match("/^([a-zA-Z0-9]+)$/",$username)) {
+		// 帳號亂打
+		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "UserName Input Error"));
 		echo json_encode($dataArray);
 		exit;
 	}
