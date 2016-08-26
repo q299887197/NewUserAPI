@@ -168,21 +168,30 @@ if ($apiName[0] == "transfer") {
 /* 確認轉帳API */
 if ($apiName[0] == "checkTransfer") {
 	if (!$transid) {
-		echo "參數錯誤";
+		// 參數錯誤
+		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "No Transid"));
+		echo json_encode($dataArray);
 		exit;
 	}
 	if (!$key) {
-		echo "參數錯誤";
+		// 參數錯誤
+		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "No Key"));
+		echo json_encode($dataArray);
 		exit;
 	}
 	if ($key != $date) {
-		echo "key值輸入錯誤!";
+		// key值輸入錯誤
+		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "Key Input Error"));
+		echo json_encode($dataArray);
 		exit;
 	}
+
 	$result = $api->checkTransfer($username, $transid);
 
 	foreach($result as $row);
 
-	echo "此筆交易, 動作: ".$row['type'].", 交易金額: ".$row['amount'];
-	// echo "此筆交易: ".json_encode($result);
+	// 紀錄
+	$dataArray = array("result" => true, "data" => array("Code" => $row['type'], "Message" => $row['amount']));
+	echo json_encode($dataArray);
+	exit;
 }
