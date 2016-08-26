@@ -265,7 +265,7 @@ if ($apiName[0] == "checkTransfer") {
 	foreach($result as $row);
 
 	// 紀錄
-	$dataArray = array("result" => true, "data" => array("Code" => $row['type'], "Message" => $row['amount']));
+	$dataArray = array("result" => true, "data" => array("Code" => $row['type'], "Amount" => $row['amount'], "Message" => "Search Success"));
 	echo json_encode($dataArray);
 	exit;
 }

@@ -7,13 +7,13 @@
 ###參數
 1.帳號(string) username <br>
 2.驗證碼(string) key<br>
-	key = 台灣當地日期(八位數) ex. 20160825
+	key = 台灣當地日期(八位數) ex. 20160825<br>
 
 ##取得餘額API = getBalance
 ###參數
 1.帳號(string) username<br>
 2.驗證碼(string) key<br>
-	key = 台灣當地日期(八位數) ex. 20160825
+	key = 台灣當地日期(八位數) ex. 20160825<br>
 
 ##轉帳API = transfer
 ###參數
@@ -22,13 +22,14 @@
 3.金額(int) amount<br>
 4.序號(int) transid<br>
 5.驗證碼(string) key<br>
-	key = 台灣當地日期(八位數) ex. 20160825
+	key = 台灣當地日期(八位數) ex. 20160825<br>
 
 ##轉帳確認API = checkTransfer
 ###參數
-1.序號(int) transid<br>
-2.驗證碼(string) key<br>
-	key = 台灣當地日期(八位數) ex. 20160825
+1.帳號(string) username<br>
+2.序號(int) transid<br>
+3.驗證碼(string) key<br>
+	key = 台灣當地日期(八位數) ex. 20160825<br>
 
 
 ##題目6.api與文件製作
