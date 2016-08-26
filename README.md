@@ -1,7 +1,7 @@
 #說明
 
-# URL : https://lab-bob-chen.c9users.io/stage2/week4/NewAPI/index1.php/API名稱?參數=多少
-# 示範: https://lab-bob-chen.c9users.io/stage2/week4/NewAPI/index1.php/addUser?username=Bob&key=20160825
+### URL : https://lab-bob-chen.c9users.io/stage2/week4/NewAPI/index1.php/API名稱?參數=多少
+### 示範: https://lab-bob-chen.c9users.io/stage2/week4/NewAPI/index1.php/addUser?username=Bob&key=20160825
 
 ##建立帳號API = addUser
 #參數
