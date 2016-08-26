@@ -16,6 +16,16 @@ class Api
 	public function addUser($username)
 	{
 		$db = $this->dbh;
+		$select = $db->prepare("SELECT `username` FROM `userData` WHERE `username` = :username");
+		$select->bindParam(':username', $username);
+		$select->execute();
+		$result = $select->fetch();
+        $resultUserName = $result['username'];
+
+        if ($resultUserName == $username) {
+        	return false;
+        }
+
 		$insert = $db->prepare("INSERT INTO `userData` (`username`) VALUES (:username)");
 	    $insert->bindParam(':username', $username);
 
@@ -42,6 +52,7 @@ class Api
 		try{
             $dbh->beginTransaction();
 
+			//當前餘額
 			$balance = $this->getBalance($username);
 
 			 /* 存款 */
@@ -68,9 +79,11 @@ class Api
 				throw new Exception("轉帳失敗");
 			}
 
+			//查詢最新餘額
 			$balance = $this->getBalance($username);
 			$data['balance'] = $balance;
 
+			//新增明細
 			$transidFalse = $this->insertRecord($username, $type, $amount, $transid);
 
 			if ($transidFalse) {
@@ -97,13 +110,14 @@ class Api
     {
         $dbh = $this->dbh ;
 
-        $select = $dbh->prepare("SELECT * FROM `userRecord` WHERE `transid` = :transid");
+        $select = $dbh->prepare("SELECT `transid` FROM `userRecord` WHERE `transid` = :transid");
         $select->bindParam(':transid', $transid);
         $select->execute();
 
         $result = $select->fetch();
         $resultTransid = $result['transid'];
 
+		//查詢編號是否重複
 		if ($transid == $resultTransid) {
 			return true;
 		}

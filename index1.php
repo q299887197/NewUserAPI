@@ -6,6 +6,7 @@ require_once("Api.php");
 
 $api = new Api();
 
+/* 拆除本身自己網址抓取 apiName */
 $url = $_SERVER['REQUEST_URI'];
 $url = explode ( ".php/", $url );
 $apiName = explode ( "?", $url[1] );
