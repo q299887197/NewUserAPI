@@ -188,6 +188,13 @@ if ($apiName[0] == "checkTransfer") {
 
 	$result = $api->checkTransfer($username, $transid);
 
+	if (!$result) {
+		// 紀錄
+		$dataArray = array("result" => true, "data" => array("Code" => "Transid Error", "Message" => "Transid Number Is Null"));
+		echo json_encode($dataArray);
+		exit;
+	}
+
 	foreach($result as $row);
 
 	// 紀錄
