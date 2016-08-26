@@ -67,14 +67,15 @@ class Api
 	{
 		$dbh = $this->dbh;
 
-		$resultUserName = $this->selectUser($username);
-
-		if ($resultUserName != $username) {
-        	return "Error";
-        }
-
 		try{
             $dbh->beginTransaction();
+
+            $resultUserName = $this->selectUser($username);
+
+			if ($resultUserName != $username) {
+				$data['error'] = true;
+	        	throw new Exception(); //餘額不足
+	        }
 
 			//當前餘額
 			$balance = $this->getBalance($username);

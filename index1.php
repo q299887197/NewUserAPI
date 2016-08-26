@@ -182,12 +182,12 @@ if ($apiName[0] == "transfer") {
 	}
 
 	$result = $api->transfer($username, $type, $amount, $transid);
-
+	$error = $result['error'];
 	$balance = $result['balance'];
 	$resultTure = $result['result'];
 	$msg = $result['msg'];
 
-	if ($result == "Error") { // 帳號錯誤
+	if ($error) { // 帳號錯誤
 		$dataArray = array("result" => false, "data" => array("Code" => "UserName Error", "Message" => "UserName Input Error"));
 		echo json_encode($dataArray);
 		exit;
