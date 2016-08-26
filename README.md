@@ -4,19 +4,19 @@
 ### 示範: https://lab-bob-chen.c9users.io/stage2/week4/NewAPI/index1.php/addUser?username=Bob&key=20160825
 
 ##建立帳號API = addUser
-#參數
+###參數
 1.帳號(string) username <br>
 2.驗證碼(string) key<br>
 	key = 台灣當地日期(八位數) ex. 20160825
 
 ##取得餘額API = getBalance
-#參數
+###參數
 1.帳號(string) username<br>
 2.驗證碼(string) key<br>
 	key = 台灣當地日期(八位數) ex. 20160825
 
 ##轉帳API = transfer
-參數#
+###參數
 1.帳號(string) username<br>
 2.轉帳型態(string) type (IN,OUT)<br>
 3.金額(int) amount<br>
@@ -25,7 +25,7 @@
 	key = 台灣當地日期(八位數) ex. 20160825
 
 ##轉帳確認API = checkTransfer
-#參數
+###參數
 1.序號(int) transid<br>
 2.驗證碼(string) key<br>
 	key = 台灣當地日期(八位數) ex. 20160825

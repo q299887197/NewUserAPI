@@ -85,6 +85,18 @@ if ($apiName[0] == "transfer") {
 		echo "參數錯誤";
 		exit;
 	}
+	if ($type != "IN" ) {
+		if ($type != "OUT") {
+			echo "type值輸入有誤";
+			exit;
+		}
+	}
+	if ($type != "OUT" ) {
+		if ($type != "IN") {
+			echo "type值輸入有誤";
+			exit;
+		}
+	}
 	if ($key != $date) {
 		echo "key值輸入錯誤!";
 		exit;
