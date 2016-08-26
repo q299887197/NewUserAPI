@@ -46,6 +46,13 @@ class Api
 	public function getBalance($username)
 	{
 		$db = $this->dbh;
+
+		$resultUserName = selectUser($username);
+
+		if ($resultUserName != $username) {
+        	return false;
+        }
+
         $select = $db->prepare("SELECT * FROM `userData` WHERE `username` = :username");
         $select->bindParam(':username', $username);
         $select->execute();

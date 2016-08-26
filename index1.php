@@ -102,6 +102,12 @@ if ($apiName[0] == "getBalance") {
 
 	$result = $api->getBalance($username);
 
+	if (!$result) { //帳號錯誤
+		$dataArray = array("result" => false, "data" => array("Code" => "UserName Error", "Message" => "UserName Input Error"));
+		echo json_encode($dataArray);
+		exit;
+	}
+
 	// 餘額
 	$dataArray = array("result" => true, "data" => array("Code" => $username, "Message" => "Balance:".$result));
 	echo json_encode($dataArray);
