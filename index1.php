@@ -20,6 +20,7 @@ $type = $_GET['type'];
 $key = $_GET['key'];
 
 $date= date("Ymd");
+
 if ($apiName[0]) {
 	if (!preg_match("/^([a-zA-Z0-9]+)$/",$apiName[0])) {
 		// 參數錯誤
@@ -31,6 +32,12 @@ if ($apiName[0]) {
 
 /* 新增帳號API */
 if ($apiName[0] == "addUser") {
+	if (!$apiName[1]) {
+		// 參數空的
+		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "No Parameter"));
+		echo json_encode($dataArray);
+		exit;
+	}
 	if (!$username) {
 		// 參數錯誤
 		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "No UserName"));
@@ -49,6 +56,13 @@ if ($apiName[0] == "addUser") {
 		echo json_encode($dataArray);
 		exit;
 	}
+	if (!preg_match("/^([a-zA-Z0-9]+)$/",$username)) {
+		// 帳號亂打
+		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "username Input Error"));
+		echo json_encode($dataArray);
+		exit;
+	}
+
 
 	$result = $api->addUser($username);
 
@@ -67,6 +81,12 @@ if ($apiName[0] == "addUser") {
 
 /* 取得餘額API */
 if ($apiName[0] == "getBalance") {
+	if (!$apiName[1]) {
+		// 參數空的
+		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "No Parameter"));
+		echo json_encode($dataArray);
+		exit;
+	}
 	if (!$username) {
 		// 參數錯誤
 		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "No UserName"));
@@ -96,6 +116,12 @@ if ($apiName[0] == "getBalance") {
 
 /* 轉帳API */
 if ($apiName[0] == "transfer") {
+	if (!$apiName[1]) {
+		// 參數空的
+		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "No Parameter"));
+		echo json_encode($dataArray);
+		exit;
+	}
 	if (!$username) {
 		// 參數錯誤
 		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "No UserName"));
@@ -177,6 +203,12 @@ if ($apiName[0] == "transfer") {
 
 /* 確認轉帳API */
 if ($apiName[0] == "checkTransfer") {
+	if (!$apiName[1]) {
+		// 參數空的
+		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "No Parameter"));
+		echo json_encode($dataArray);
+		exit;
+	}
 	if (!$transid) {
 		// 參數錯誤
 		$dataArray = array("result" => false, "data" => array("Code" => "Parameter Error", "Message" => "No Transid"));
