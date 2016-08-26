@@ -186,7 +186,8 @@ if ($apiName[0] == "transfer") {
 	$balance = $result['balance'];
 	$resultTure = $result['result'];
 	$msg = $result['msg'];
-	if ($result == "Repeat") { // 帳號錯誤
+
+	if ($result == "Error") { // 帳號錯誤
 		$dataArray = array("result" => false, "data" => array("Code" => "UserName Error", "Message" => "UserName Input Error"));
 		echo json_encode($dataArray);
 		exit;
@@ -244,6 +245,11 @@ if ($apiName[0] == "checkTransfer") {
 
 	$result = $api->checkTransfer($username, $transid);
 
+	if ($result == "Error") { // 帳號錯誤
+		$dataArray = array("result" => false, "data" => array("Code" => "UserName Error", "Message" => "UserName Input Error"));
+		echo json_encode($dataArray);
+		exit;
+	}
 	if (!$result) { // 沒紀錄
 
 		$dataArray = array("result" => true, "data" => array("Code" => "Transid Error", "Message" => "Transid Number Is Null"));

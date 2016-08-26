@@ -70,7 +70,7 @@ class Api
 		$resultUserName = selectUser($username);
 
 		if ($resultUserName != $username) {
-        	return "Repeat";
+        	return "Error";
         }
 
 		try{
@@ -159,6 +159,12 @@ class Api
 	public function checkTransfer($username, $transid)
 	{
 		$db = $this->dbh;
+
+		$resultUserName = selectUser($username);
+
+		if ($resultUserName != $username) {
+        	return "Error";
+        }
 
         $select = $db->prepare("SELECT * FROM `userRecord` WHERE `transid` = :transid");
         $select->bindParam(':transid', $transid);
