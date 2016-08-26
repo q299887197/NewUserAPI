@@ -6,12 +6,13 @@ require_once("Api.php");
 
 $api = new Api();
 
+$dataArray = array();
+
 /* 拆除本身自己網址抓取 apiName */
 $url = $_SERVER['REQUEST_URI'];
 $url = explode ( ".php/", $url );
 $apiName = explode ( "?", $url[1] );
 
-$dataArray = array();
 $username = $_GET['username'];
 $amount = $_GET['amount'];
 $transid = $_GET['transid'];
@@ -19,6 +20,14 @@ $type = $_GET['type'];
 $key = $_GET['key'];
 
 $date= date("Ymd");
+if ($apiName[0]) {
+	if (!preg_match("/^([a-zA-Z0-9]+)$/",$apiName[0])) {
+		// 參數錯誤
+		$dataArray = array("result" => false, "data" => array("Code" => "API Error", "Message" => "API Input Error"));
+		echo json_encode($dataArray);
+		exit;
+	}
+}
 
 /* 新增帳號API */
 if ($apiName[0] == "addUser") {
@@ -40,6 +49,7 @@ if ($apiName[0] == "addUser") {
 		echo json_encode($dataArray);
 		exit;
 	}
+
 	$result = $api->addUser($username);
 
 	if (!$result) {
